@@ -1,0 +1,5 @@
+<resources>
+    <string name="close">Close</string>
+    <string name="message">Message</string>
+    <string name="title">Title</string>
+</resources>
