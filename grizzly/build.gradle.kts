@@ -5,7 +5,7 @@ plugins {
     id("signing")
 }
 val PUBLISH_GROUP_ID by extra("io.github.farimarwat")
-val PUBLISH_VERSION by extra("2.0")
+val PUBLISH_VERSION by extra("2.1")
 val PUBLISH_ARTIFACT_ID by extra("grizzly")
 val PUBLISH_DESCRIPTION by extra("An Android library to handle ANRs and crashes that occur from third parties and beyond our control.")
 val PUBLISH_URL by extra("https://github.com/farimarwat/grizzly")

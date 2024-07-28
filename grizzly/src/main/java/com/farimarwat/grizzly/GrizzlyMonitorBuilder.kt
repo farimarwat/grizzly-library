@@ -8,42 +8,83 @@ import com.farimarwat.grizzly.crashmonitor.CrashMonitor
 import com.farimarwat.grizzly.crashmonitor.CrashMonitorBuilder
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 
-
+/**
+ * Builder class for creating an instance of [GrizzlyMonitor].
+ *
+ * @property context The application context.
+ */
 class GrizzlyMonitorBuilder(private val context: Context) {
 
-    //AnrMonitor Params
-    private var mTicker:Long = TICKER_DEFAULT
-    private var mThreshold:Long = THRESHOLD_DEFAULT
+    // ANR Monitor Params
+    private var mTicker: Long = TICKER_DEFAULT
+    private var mThreshold: Long = THRESHOLD_DEFAULT
 
-    //CrashMonitor Params
+    // Crash Monitor Params
     private var mTitle: String = "Application Error"
     private var mMessage: String = "An unexpected error occurred. Please restart the app."
     private var mFirebaseCrashlytics: FirebaseCrashlytics? = null
 
-
-    fun withTicker(ticker:Long):GrizzlyMonitorBuilder{
+    /**
+     * Sets the ticker interval for the ANR monitor.
+     *
+     * @param ticker The interval in milliseconds. Valid values are between 1 and 500.
+     * @return The current instance of [GrizzlyMonitorBuilder].
+     */
+    fun withTicker(ticker: Long): GrizzlyMonitorBuilder {
         this.mTicker = ticker
         return this
     }
-    fun withThreshold(threshold:Long):GrizzlyMonitorBuilder{
+
+    /**
+     * Sets the threshold for detecting ANRs.
+     *
+     * @param threshold The threshold in milliseconds. Valid values are between 1000 and 4500.
+     * @return The current instance of [GrizzlyMonitorBuilder].
+     */
+    fun withThreshold(threshold: Long): GrizzlyMonitorBuilder {
         this.mThreshold = threshold
         return this
     }
 
-    fun withTitle(title:String):GrizzlyMonitorBuilder{
+    /**
+     * Sets the title for crash dialogs.
+     *
+     * @param title The title to be displayed.
+     * @return The current instance of [GrizzlyMonitorBuilder].
+     */
+    fun withTitle(title: String): GrizzlyMonitorBuilder {
         this.mTitle = title
         return this
     }
-    fun withMessage(message:String):GrizzlyMonitorBuilder{
+
+    /**
+     * Sets the message for crash dialogs.
+     *
+     * @param message The message to be displayed.
+     * @return The current instance of [GrizzlyMonitorBuilder].
+     */
+    fun withMessage(message: String): GrizzlyMonitorBuilder {
         this.mMessage = message
         return this
     }
-    fun withFirebaseCrashLytics(firebaseCrashlytics: FirebaseCrashlytics):GrizzlyMonitorBuilder{
+
+    /**
+     * Sets the Firebase Crashlytics instance for crash reporting.
+     *
+     * @param firebaseCrashlytics The FirebaseCrashlytics instance.
+     * @return The current instance of [GrizzlyMonitorBuilder].
+     */
+    fun withFirebaseCrashLytics(firebaseCrashlytics: FirebaseCrashlytics): GrizzlyMonitorBuilder {
         this.mFirebaseCrashlytics = firebaseCrashlytics
         return this
     }
 
-    fun build():GrizzlyMonitor{
+    /**
+     * Builds and returns an instance of [GrizzlyMonitor].
+     *
+     * @return A new instance of [GrizzlyMonitor].
+     */
+    fun build(): GrizzlyMonitor {
         return GrizzlyMonitorImpl(
             AnrMonitorBuilder
                 .withTicker(mTicker)
